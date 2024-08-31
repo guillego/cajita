@@ -1,0 +1,23 @@
+# Binaries and build artifacts
+/bin/
+/*.exe
+/*.exe~
+/*.out
+/*.test
+/*.tmp
+
+# Go module cache
+.go/
+
+# Go build output
+*.log
+
+# IDE and editor directories
+.vscode/
+.idea/
+*.swp
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
