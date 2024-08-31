@@ -1,0 +1,97 @@
+basePath: /api/v1
+host: localhost:8080
+info:
+  contact: {}
+  description: This is a key-value store server API.
+  title: Cajita API
+  version: "1.0"
+paths:
+  /delete:
+    delete:
+      consumes:
+      - application/json
+      description: Delete the key-value pair for the provided key
+      parameters:
+      - description: Key to delete
+        in: query
+        name: key
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Delete a key-value pair
+      tags:
+      - key-value
+  /get:
+    get:
+      consumes:
+      - application/json
+      description: Retrieve a value associated with the provided key
+      parameters:
+      - description: Key to retrieve
+        in: query
+        name: key
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Retrieve a value by key
+      tags:
+      - key-value
+  /set:
+    post:
+      consumes:
+      - application/json
+      description: Set a value for the provided key
+      parameters:
+      - description: Key and Value
+        in: body
+        name: body
+        required: true
+        schema:
+          additionalProperties:
+            type: string
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Set a value by key
+      tags:
+      - key-value
+swagger: "2.0"

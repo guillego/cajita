@@ -18,6 +18,16 @@ func NewHandler(store *store.Store) *Handler {
 }
 
 // GetHandler handles GET requests.
+//	@Summary		Retrieve a value by key
+//	@Description	Retrieve a value associated with the provided key
+//	@Tags			key-value
+//	@Accept			json
+//	@Produce		json
+//	@Param			key	query		string	true	"Key to retrieve"
+//	@Success		200	{object}	map[string]string
+//	@Failure		400	{object}	map[string]string
+//	@Failure		404	{object}	map[string]string
+//	@Router			/get [get]
 func (h *Handler) GetHandler(w http.ResponseWriter, r *http.Request) {
 	key := r.URL.Query().Get("key")
 	if key == "" {
@@ -41,6 +51,15 @@ func (h *Handler) GetHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 // SetHandler handles POST requests.
+//	@Summary		Set a value by key
+//	@Description	Set a value for the provided key
+//	@Tags			key-value
+//	@Accept			json
+//	@Produce		json
+//	@Param			body	body	map[string]string	true	"Key and Value"
+//	@Success		200
+//	@Failure		400	{object}	map[string]string
+//	@Router			/set [post]
 func (h *Handler) SetHandler(w http.ResponseWriter, r *http.Request) {
 	var req map[string]string
 	if err := json.NewDecoder(r.Body).Decode(&req); err != nil {
@@ -63,6 +82,15 @@ func (h *Handler) SetHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 // DeleteHandler handles DELETE requests.
+//	@Summary		Delete a key-value pair
+//	@Description	Delete the key-value pair for the provided key
+//	@Tags			key-value
+//	@Accept			json
+//	@Produce		json
+//	@Param			key	query	string	true	"Key to delete"
+//	@Success		200
+//	@Failure		400	{object}	map[string]string
+//	@Router			/delete [delete]
 func (h *Handler) DeleteHandler(w http.ResponseWriter, r *http.Request) {
 	key := r.URL.Query().Get("key")
 	if key == "" {
@@ -75,4 +103,3 @@ func (h *Handler) DeleteHandler(w http.ResponseWriter, r *http.Request) {
 	log.Printf("DeleteHandler: key=%s deleted", key)
 	w.WriteHeader(http.StatusOK)
 }
-

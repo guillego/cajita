@@ -19,4 +19,3 @@ func TestStore(t *testing.T) {
 		t.Error("expected key 'foo' to be deleted")
 	}
 }
-
