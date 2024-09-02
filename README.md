@@ -43,13 +43,13 @@ By default, the service runs on `http://localhost:8080`.
 - **Set a Key-Value Pair:**
 
   ```http
-  GET /set?key=<key>&value=<value>
+  GET /set?key=<key>&value=<value> 
   ```
 
   Example:
 
   ```bash
-  curl "http://localhost:8080/set?key=mykey&value=myvalue"
+  curl -X POST -H "Content-Type: application/json" -d '{"key":"mykey", "value":"myvalue"}' http://localhost:8080/set
   ```
 
 - **Get a Value by Key:**
